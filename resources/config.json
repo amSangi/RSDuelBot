@@ -1,0 +1,62 @@
+{
+  "token": "TOKEN_VALUE",
+  "food": {
+    "heal": 30
+  },
+  "weapons": {
+    "dds": {
+      "base_hit": 28,
+      "hits_per_attack": 2,
+      "spec": 25,
+      "accuracy": 1
+    },
+    "dclaws": {
+      "base_hit": 22,
+      "hits_per_attack": 4,
+      "spec": 50,
+      "accuracy": 1
+    },
+    "gmaul": {
+      "base_hit": 34,
+      "hits_per_attack": 3,
+      "spec": 100,
+      "accuracy": 1
+    },
+    "dbow": {
+      "base_hit": 45,
+      "hits_per_attack": 2,
+      "spec": 55,
+      "accuracy": 1
+    },
+    "ags": {
+      "base_hit": 79,
+      "hits_per_attack": 1,
+      "spec": 75,
+      "accuracy": 1
+    },
+    "obby": {
+      "base_hit": 65,
+      "hits_per_attack": 1,
+      "spec": 0,
+      "accuracy": 1
+    },
+    "fists": {
+      "base_hit": 10,
+      "hits_per_attack": 2,
+      "spec": 0,
+      "accuracy": 1
+    },
+    "whip": {
+      "base_hit": 42,
+      "hits_per_attack": 1,
+      "spec": 0,
+      "accuracy": 1
+    },
+    "dhaxe": {
+      "base_hit": 45,
+      "hits_per_attack": 1,
+      "spec": 0,
+      "accuracy": 1
+    }
+  }
+}
