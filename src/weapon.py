@@ -1,8 +1,8 @@
-from abc import ABC, abstractmethod
+from item import Item
 import random
 
 
-class Weapon(ABC):
+class Weapon(Item):
     """ Abstract weapon class that computes damage given a player and enemy
 
     Args:
@@ -12,7 +12,7 @@ class Weapon(ABC):
         base_hit (int): The base hit damage of the weapon
         hits_per_attack (int): The number of attacks per turn
         spec (int): The amount of spec the weapon uses (0 <= spec <= 100)
-        accuracy: The weapon accuracy
+        accuracy: The weapon accuracy with range [0,1]
     """
 
     def __init__(self, obj):
@@ -21,7 +21,6 @@ class Weapon(ABC):
         self.spec = obj['spec']
         self.accuracy = obj['accuracy']
 
-    @abstractmethod
     def evaluate(self, player, enemy):
         """
         Compute the damage to apply on enemy
@@ -43,7 +42,7 @@ class SimpleWeapon(Weapon):
         for _ in range(0, self.hits_per_attack):
             # Determine if player hit
             hit_chance = random.random()
-            if hit_chance < self.accuracy:
+            if hit_chance > self.accuracy:
                 damage_per_hit.append(0)
                 continue
 
@@ -51,7 +50,7 @@ class SimpleWeapon(Weapon):
             hit_damage = random.randint(1, self.base_hit)
             damage_per_hit.append(hit_damage)
 
-        return tuple(damage_per_hit)
+        return damage_per_hit
 
 
 class DHAxe(Weapon):
@@ -63,11 +62,14 @@ class DHAxe(Weapon):
         """ Max Damage = base_hit + (base_hit * (1/player_hp)) """
 
         hit_chance = random.random()
-        if hit_chance < self.accuracy:
+        if hit_chance > self.accuracy:
             return tuple([0])
 
         max_hit_damage = self.base_hit + int(self.base_hit * (1 / player.hp))
-        return tuple(random.randint(1, max_hit_damage))
+        damage = random.randint(1, max_hit_damage)
+        return [damage]
+
+
 
 
 

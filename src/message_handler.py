@@ -10,9 +10,9 @@ class MessageHandler:
     Attributes:
         matches (dict) : A map of channel id to a given Match
     """
-    def __init__(self, server, food_heal, weapons):
+    def __init__(self, server, food, weapons):
         self.weapons = weapons
-        self.food_heal = food_heal
+        self.food = food
         self.matches = {}
         for channel in server.channels:
             self.matches[channel.id] = Match()
@@ -29,25 +29,30 @@ class MessageHandler:
         else:
             match = Match()
             self.matches[channel_id] = match
-        return self._parse_command(message.user, message.content, match)
+        return await self._parse_command(message.author, message.content, match)
 
-    def _parse_command(self, user, content, match):
+    async def _parse_command(self, user, content, match):
         """
-        Return status update for the match
+        Return status update for the game
 
         :param content: The message contents
         :param match: The match in the current channel
-        :return: the status of the match
+        :return: the status of the game given a command
         """
+
         if not content.startswith("."):
             return None
 
-        if content == ".dm":
-            return match.begin(user)
-        elif content == ".ff" and match.is_player(user):
-            return match.cancel()
+        if content == ".items":
+            return None
+        elif content == ".dm":
+            return await match.begin(user)
+        elif not await match.is_player(user):
+            return None
+        elif content == ".ff":
+            return await match.cancel()
         elif content[1:] in self.weapons:
-            return match.register_move(user, self.weapons[content[1:]])
+            return await match.register_item(user, self.weapons[content[1:]])
         elif content == ".food":
-            return match.register_heal(user, self.food_heal)
+            return await match.register_item(user, self.food)
         return None
