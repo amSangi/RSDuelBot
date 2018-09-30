@@ -34,6 +34,10 @@ class Match:
     """
     A match between two players
 
+    Class Attributes:
+        max_time_interval_ms (int) : Max length in seconds for a match
+            - New matches can be started using .dm command
+
     Attributes:
         player1 (Player) : The first player in the match
         player2 (Player) : The second player in the match

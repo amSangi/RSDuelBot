@@ -2,7 +2,8 @@ from match import Match
 
 
 class MessageHandler:
-    """A class that handles messages for an incoming message
+    """
+    Handles  messages for an incoming message
 
     Args:
         server (discord.Server) : The discord server this instance corresponds to
