@@ -1,4 +1,5 @@
 from match import Match
+import prettytable as pt
 
 
 class MessageHandler:
@@ -41,19 +42,38 @@ class MessageHandler:
         :return: the status of the game given a command
         """
 
-        if not content.startswith("."):
+        if not content.startswith("$"):
             return None
 
-        if content == ".items":
-            return None
-        elif content == ".dm":
+        command = content[1:]
+
+        if command == "items":
+            return await self._display_items()
+        elif command == "dm":
             return await match.begin(user)
         elif not await match.is_player(user):
             return None
-        elif content == ".ff":
+        elif command == "ff":
             return await match.cancel()
-        elif content[1:] in self.weapons:
+        elif command in self.weapons:
             return await match.register_item(user, self.weapons[content[1:]])
-        elif content == ".food":
+        elif command == "food":
             return await match.register_item(user, self.food)
         return None
+
+    async def _display_items(self):
+        # Weapon Table
+        weapons_table = pt.PrettyTable()
+        weapons_table.title = "Weapons"
+        weapons_table.field_names = ["Name", "Damage", "Hits/Attack", "Spec", "Accuracy"]
+        for name, weapon in self.weapons.items():
+            weapons_table.add_row([name, weapon.base_hit, weapon.hits_per_attack, weapon.spec, weapon.accuracy * 100])
+
+        # Food Table
+        food_table = pt.PrettyTable()
+        food_table.title = "Food"
+        food_table.field_names = ["Name", "Heal Amount"]
+        food_table.add_row(["food", self.food.heal_amount])
+        return "`" + str(weapons_table) + "\n" + str(food_table) + "`"
+
+
