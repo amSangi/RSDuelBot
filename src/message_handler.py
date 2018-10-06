@@ -1,4 +1,4 @@
-from match import Match
+from game.match import Match
 import prettytable as pt
 
 

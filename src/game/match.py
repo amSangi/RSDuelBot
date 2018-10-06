@@ -1,7 +1,7 @@
 import time
-from player import Player
-from item import Food
-from weapon import Weapon
+from game.player import Player
+from game.item import Food
+from game.weapon import Weapon
 
 
 class Move:
