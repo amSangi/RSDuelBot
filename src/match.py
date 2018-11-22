@@ -110,7 +110,7 @@ class Match:
             self.moves.clear()
             return msg
 
-        return player.name + " has registered their move!"
+        return player.name + " has registered a move!"
 
     async def _evaluate_moves(self):
         """
