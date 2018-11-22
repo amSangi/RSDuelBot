@@ -1,6 +1,6 @@
 import time
-from game.player import Player
 from game.item import Food
+from game.player import Player
 from game.weapon import Weapon
 
 
@@ -53,14 +53,14 @@ class Match:
 
     async def is_player(self, user):
         """
-        :param user: a discord user
-        :return: True if the discord user is a current player
+        :param user: a bot user
+        :return: True if the bot user is a current player
         """
         return self.player1.id == user.id or self.player2.id == user.id
 
     async def begin(self, user):
         """
-        :param user: the discord user initiating or accepting the match
+        :param user: the bot user initiating or accepting the match
         :return: a response message
         """
         if self.player1.id == -1:

@@ -1,4 +1,4 @@
-from game.match import Match
+from game import Match
 import prettytable as pt
 
 
@@ -7,7 +7,7 @@ class MessageHandler:
     Handles  messages for an incoming message
 
     Args:
-        server (discord.Server) : The discord server this instance corresponds to
+        server (bot.Server) : The bot server this instance corresponds to
 
     Attributes:
         matches (dict) : A map of channel id to a given Match

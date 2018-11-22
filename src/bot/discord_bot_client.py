@@ -1,11 +1,11 @@
-import discord
+from discord import Client
 from asyncio import CancelledError
 from message_handler import MessageHandler
 
 
-class DiscordBotClient(discord.Client):
+class DiscordBotClient(Client):
     """
-    A subclass of the discord client
+    A subclass of the bot client
 
     Attributes:
         server_map (dict): A dictionary map from server id to the servers MessageHandler
