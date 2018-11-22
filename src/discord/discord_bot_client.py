@@ -3,7 +3,7 @@ from asyncio import CancelledError
 from message_handler import MessageHandler
 
 
-class BotClient(discord.Client):
+class DiscordBotClient(discord.Client):
     """
     A subclass of the discord client
 
