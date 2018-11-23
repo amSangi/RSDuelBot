@@ -23,5 +23,5 @@ A Discord duel bot using RuneScape-like combat. Inspired by Death Match.
  | Name  | Action      |
  |:---:  | :---:       |
  | $dm   | start match |
- | $items| get list of item commands |
+ | $items| display the items |
  | $ff   | forfeit the match |
